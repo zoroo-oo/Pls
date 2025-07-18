@@ -1,125 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Revn — Journey Redefined</title>
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0d0d0d;
+      background-color: #0f0f0f;
       color: white;
+    }
+
+    .container {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       height: 100vh;
+      padding: 20px;
     }
 
-    .header {
+    .top-section {
       text-align: center;
-      margin-top: 20px;
     }
 
-    .header h1 {
-      font-size: 2.2rem;
-      margin: 0;
+    .top-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 5px;
     }
 
-    .header p {
-      font-size: 1rem;
+    .top-section p {
+      font-size: 1.2rem;
       color: #aaa;
-      margin-top: 5px;
     }
 
-    .carousel-container {
-      flex-grow: 1;
+    .middle-section {
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      overflow: hidden;
-      margin: 30px;
+      flex: 1;
     }
 
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .middle-section img {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
       border-radius: 10px;
-      transition: opacity 0.7s ease-in-out;
-      opacity: 0;
     }
 
-    .slide.active {
-      opacity: 1;
+    .bottom-section {
+      text-align: center;
     }
 
     .slogan {
-      position: absolute;
-      bottom: 40px;
-      left: 20px;
-      right: 20px;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    .ride-btn {
+      background-color: #ff4d00;
       color: white;
-      text-shadow: 2px 2px 8px #000;
-    }
-
-    .footer {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .ride-button {
-      background-color: #ff5722;
+      padding: 14px 30px;
       border: none;
-      padding: 14px 28px;
-      color: white;
+      border-radius: 25px;
       font-size: 1rem;
-      border-radius: 50px;
       cursor: pointer;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    @media (max-height: 600px) {
+      .middle-section img {
+        max-height: 200px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="top-section">
+      <h1>Revn</h1>
+      <p>Journey Redefined</p>
+    </div>
 
-  <div class="header">
-    <h1>Revn</h1>
-    <p>Journey Redefined</p>
+    <div class="middle-section">
+      <img src="https://via.placeholder.com/300x200?text=Slide+1" alt="Slide 1">
+    </div>
+
+    <div class="bottom-section">
+      <div class="slogan">Leave Maps,<br>Follow Roads</div>
+      <button class="ride-btn">Ride Now</button>
+    </div>
   </div>
-
-  <div class="carousel-container">
-    <img class="slide active" src="https://source.unsplash.com/featured/?sunset,roadtrip" alt="Slide 1" />
-    <img class="slide" src="https://source.unsplash.com/featured/?car,forest" alt="Slide 2" />
-    <img class="slide" src="https://source.unsplash.com/featured/?motorbike,adventure" alt="Slide 3" />
-    <img class="slide" src="https://source.unsplash.com/featured/?roadtrip,mountain" alt="Slide 4" />
-    <div class="slogan" id="slogan">Leave Maps, Follow Roads</div>
-  </div>
-
-  <div class="footer">
-    <button class="ride-button">Ride Now</button>
-  </div>
-
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    const slogan = document.getElementById('slogan');
-    const texts = [
-      "Leave Maps, Follow Roads",
-      "Into the Wild, On Your Terms",
-      "Your Machine, Your Way",
-      "Escape Ordinary, Ride Revn"
-    ];
-
-    let index = 0;
-
-    setInterval(() => {
-      slides.forEach(slide => slide.classList.remove('active'));
-      index = (index + 1) % slides.length;
-      slides[index].classList.add('active');
-      slogan.innerText = texts[index];
-    }, 3000);
-  </script>
 </body>
 </html>
