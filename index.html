@@ -3,101 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Revn — Journey Redefined</title>
+  <title>Revn</title>
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      width: 100%;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f0f;
+      background-color: #111;
       color: white;
-    }
-
-    .container {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       height: 100vh;
-      padding: 20px;
-    }
-
-    .top-section {
+      justify-content: space-between;
+      align-items: center;
       text-align: center;
     }
 
-    .top-section h1 {
+    header {
+      padding-top: 20px;
+    }
+
+    h1 {
       font-size: 2.5rem;
-      margin-bottom: 5px;
+      margin: 0;
     }
 
-    .top-section p {
+    p.slogan {
       font-size: 1.2rem;
-      color: #aaa;
+      color: #ccc;
+      margin-top: 0.5rem;
     }
 
-    .middle-section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
+    .carousel-container {
+      margin: 20px 0;
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+      height: 250px;
+      overflow: hidden;
+      border-radius: 20px;
     }
 
-    .middle-section img {
-      max-width: 100%;
-      max-height: 300px;
-      object-fit: contain;
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.8s ease-in-out;
+      opacity: 0;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .slide-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.3rem;
+      color: white;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
       border-radius: 10px;
     }
 
-    .bottom-section {
-      text-align: center;
-    }
-
-    .slogan {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-    }
-
-    .ride-btn {
-      background-color: #ff4d00;
+    .ride-now {
+      margin-bottom: 30px;
+      background: #ff4400;
       color: white;
-      padding: 14px 30px;
       border: none;
-      border-radius: 25px;
-      font-size: 1rem;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border-radius: 30px;
       cursor: pointer;
-      width: 100%;
-      max-width: 300px;
-    }
-
-    @media (max-height: 600px) {
-      .middle-section img {
-        max-height: 200px;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="top-section">
-      <h1>Revn</h1>
-      <p>Journey Redefined</p>
-    </div>
+  <header>
+    <h1>Revn</h1>
+    <p class="slogan">Journey Redefined</p>
+  </header>
 
-    <div class="middle-section">
-      <img src="https://via.placeholder.com/300x200?text=Slide+1" alt="Slide 1">
+  <div class="carousel-container">
+    <div class="slide active">
+      <img src="https://source.unsplash.com/400x250/?sunset,person" alt="Slide 1">
+      <div class="slide-text">Breathe in the Horizon</div>
     </div>
-
-    <div class="bottom-section">
-      <div class="slogan">Leave Maps,<br>Follow Roads</div>
-      <button class="ride-btn">Ride Now</button>
+    <div class="slide">
+      <img src="https://source.unsplash.com/400x250/?car,forest" alt="Slide 2">
+      <div class="slide-text">Drive Where Roads Whisper</div>
+    </div>
+    <div class="slide">
+      <img src="https://source.unsplash.com/400x250/?motorcycle,adventure" alt="Slide 3">
+      <div class="slide-text">Feel the Roar of Freedom</div>
+    </div>
+    <div class="slide">
+      <img src="https://source.unsplash.com/400x250/?roadtrip,mountains" alt="Slide 4">
+      <div class="slide-text">Mountains are Calling</div>
+    </div>
+    <div class="slide">
+      <img src="https://source.unsplash.com/400x250/?biker,journey" alt="Slide 5">
+      <div class="slide-text">Use Revn</div>
     </div>
   </div>
+
+  <button class="ride-now">Leave Maps, Follow Roads</button>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    setInterval(() => {
+      slides[current].classList.remove("active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+    }, 2500);
+  </script>
 </body>
 </html>
